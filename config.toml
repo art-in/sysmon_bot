@@ -1,0 +1,29 @@
+# what level to use for filtering log messages dropped to stdout.
+# eg. "trace", "debug", "info", "warn", "error"
+log_level = "info"
+
+# what telegram bot to use for subscribing and broadcasting notifications
+tg_bot_token = "00000000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+# how often to check system state
+monitoring_interval_sec = 900
+
+# when to send alarm notification:
+
+# maximum average cpu load in the last 15 minutes (as sum of all cores).
+# eg. for two-core cpu "1.5" means: in the last 15 minutes 1st core was 100% loaded
+# and 2nd - 50% loaded, or both was 75% loaded, etc.
+# https://en.wikipedia.org/wiki/Load_(computing)
+max_cpu_avg_load_15min = 1.5
+
+# thresholds for sensors
+# matched with output of lm-sensors package. output is organized in following hierarchy:
+# sensor > feature > sub_feature > value. run "sensors -u" to findout concreet names
+# eg. setting max temperature threshold for CPU cores in my system:
+# sensor_thresholds = [
+#     { sensor = "coretemp-isa-0000", features = [
+#         { feature = "Core 0", sub_feature = "temp2_input", max = 60.0 },
+#         { feature = "Core 1", sub_feature = "temp3_input", max = 60.0 },
+#     ] },
+# ]
+sensor_thresholds = []
